@@ -175,7 +175,7 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 				}
 				check_admin_referer( 'leaddyno-config' );
 
-				foreach ( array( 'public_key', 'private_key' ) as $option_name ) {
+				foreach ( array( 'public_key', 'private_key', 'domain' ) as $option_name ) {
 					if ( isset( $_POST[ $option_name ] ) ) {
 						$options[ $option_name ] = $_POST[ $option_name ];
 					} else {
@@ -237,6 +237,14 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 								$this->postbox( 'leaddyno_settings', 'LeadDyno Settings', $content );
 
 								$rows   = array();
+
+								$rows[] = array(
+                                    'id'      => 'domain',
+                                    'label'   => 'Domain',
+                                    'desc'    => 'If blank, uses the wordpress website address.',
+                                    'content' => '<input class="text" type="text" value="' . $options['domain'] . '" name="domain" id="domain"/>',
+                                );
+
 								$rows[] = array(
 									'id'      => 'ignore_admin',
 									'label'   => 'Ignore Admin users',
@@ -332,6 +340,11 @@ function leaddyno_script() {
 	<script type="text/javascript" src="https://static.leaddyno.com/js"></script>
     <script>
     LeadDyno.key = "<?php echo $options['public_key']; ?>";
+    <?php
+        if ( $options['domain'] ) {
+            echo "LeadDyno.domain = '" . $options['domain'] . "';\n";
+        }
+    ?>
     LeadDyno.recordVisit();
     <?php
         if ( $options['enable_paypal'] ) {
