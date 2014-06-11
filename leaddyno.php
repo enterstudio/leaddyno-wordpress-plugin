@@ -80,11 +80,6 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
             return $links;
         }
 
-        function config_page() {
-
-        }
-
-
         /**
 		 * Create a postbox widget
 		 */
@@ -143,7 +138,7 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 		 */
 		function leaddyno_admin_warnings() {
 			$options = leaddyno_get_options();
-			if ( ( ! $options['public_key'] || empty( $options['public_key'] ) || ! $options['privat_key'] || empty( $options['private_key'] ) ) && ! $_POST ) {
+			if ( ( ! $options['public_key'] || empty( $options['public_key'] ) || ! $options['private_key'] || empty( $options['private_key'] ) ) && ! $_POST ) {
 				/**
 				 * Outputs a warning
 				 */
@@ -160,33 +155,6 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 
 				return;
 			}
-		}
-
-
-
-		/**
-		 * Creates the dashboard page for LeadDyno for WordPress plugin
-		 *
-		 * @link http://codex.wordpress.org/Function_Reference/add_dashboard_page
-		 */
-		function register_dashboard_page() {
-			add_dashboard_page( 'LeadDyno Dashboard', 'LeadDyno Dashboard', 'manage_options', 'leaddyno', array(
-				&$this,
-				'dashboard_page'
-			) );
-		}
-
-		/**
-		 * Loads (external) stats page in an iframe
-		 *
-		 * @uses leaddyno_get_options()
-		 */
-		function dashboard_page() {
-			$options = leaddyno_get_options();
-			?>
-			<br />
-			<iframe style="margin-left: 20px; width: 850px; height: 1000px;" src="https://app.leaddyno.com/"></iframe>
-		<?php
 		}
 
 		/**
@@ -247,7 +215,7 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 								<?php
 								wp_nonce_field( 'leaddyno-config' );
 
-								$content = '<p style="text-align:left; margin: 0 10px; font-size: 13px; line-height: 150%;">Go to your <a href="https://app.leaddyno.com/settings/account">LeadDyno Settings Page</a> and you will find your Public Key and Private Key.</p>';
+								$content = '<p style="text-align:left; margin: 0 10px; font-size: 13px; line-height: 150%;">Go to your <a href="https://app.leaddyno.com/settings/account" target="_new">LeadDyno Settings Page</a> and you will find your Public Key and Private Key.</p>';
 
 								$rows   = array();
 								$rows[] = array(
@@ -287,7 +255,7 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 
 								?>
 								<div class="submit">
-									<input type="submit" class="button-primary" name="submit" value="Update Paypal Settings &raquo;" />
+									<input type="submit" class="button-primary" name="submit" value="Update LeadDyno Settings &raquo;" />
 								</div>
 							</form>
 						</div>
@@ -365,13 +333,11 @@ function leaddyno_script() {
     <script>
     LeadDyno.key = "<?php echo $options['public_key']; ?>";
     LeadDyno.recordVisit();
-
     <?php
         if ( $options['enable_paypal'] ) {
-            echo '    LeadDyno.initPaypal();';
+            echo "LeadDyno.initPaypal();\n";
         }
     ?>
-
     </script>
 	<!-- End LeadDyno Tracking -->
 
