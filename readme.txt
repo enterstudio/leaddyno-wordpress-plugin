@@ -1,4 +1,4 @@
-== LeadDyno for Wordpress ==
+=== LeadDyno for Wordpress ===
 Contributors: leaddyno
 Tags: analytics, statistics, leaddyno, affiliate, outbound links, analysis
 Requires at least: 2.8
