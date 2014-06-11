@@ -32,7 +32,7 @@ buttons on your site that you want LeadDyno to track.
 
 == Changelog ==
 
-=== 1.0 ===
+= 1.0 =
 
 * Initial release
 
