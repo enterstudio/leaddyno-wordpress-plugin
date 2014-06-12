@@ -3,7 +3,7 @@ Contributors: leaddyno
 Tags: analytics, statistics, leaddyno, affiliate, outbound links, analysis
 Requires at least: 2.8
 Tested up to: 3.9
-Stable tag: 1.0
+Stable tag: 1.1
 
 Integrates the LeadDyno affiliate tracking and web analytics service into your blog/wordpress/woocommerce site.
 
