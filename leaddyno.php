@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: LeadDyno for WordPress
-Version: 1.0
+Version: 1.1
 Plugin URI: http://www.leaddyno.com/wordpress/
 Description: Integrates LeadDyno on your Wordpress site
 Author: LeadDyno
@@ -183,7 +183,7 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 					}
 				}
 
-				foreach ( array( 'ignore_admin', 'enable_paypal' ) as $option_name ) {
+				foreach ( array( 'ignore_admin', 'enable_paypal', 'disable_autowatch' ) as $option_name ) {
 					if ( isset( $_POST[ $option_name ] ) ) {
 						$options[ $option_name ] = true;
 					} else {
@@ -258,6 +258,13 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 									'desc'    => 'If you use paypal for purchases, enable this option to have those purchases automatically tracked by LeadDyno.',
 									'content' => '<input type="checkbox" ' . checked( $options['enable_paypal'], true, false ) . ' name="enable_paypal" id="enable_paypal"/>',
 								);
+
+								$rows[] = array(
+                                    'id'      => 'disable_autowatch',
+                                    'label'   => 'Disable Auto Watch',
+                                    'desc'    => 'If the autoWatch() javascript API is interfering with other scripts, enable this option to turn it off.',
+                                    'content' => '<input type="checkbox" ' . checked( $options['disable_autowatch'], true, false ) . ' name="disable_autowatch" id="disable_autowatch"/>',
+                                );
 
 								$this->postbox( 'leaddyno_settings', 'Advanced Settings', $this->form_table( $rows ) );
 
@@ -349,6 +356,11 @@ function leaddyno_script() {
     <?php
         if ( $options['enable_paypal'] ) {
             echo "LeadDyno.initPaypal();\n";
+        }
+    ?>
+     <?php
+        if ( !$options['disable_autowatch'] ) {
+            echo "LeadDyno.autoWatch();\n";
         }
     ?>
     </script>

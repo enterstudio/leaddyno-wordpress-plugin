@@ -32,6 +32,11 @@ buttons on your site that you want LeadDyno to track.
 
 == Changelog ==
 
+= 1.1 =
+
+* Add option to disable autoWatch
+
+
 = 1.0 =
 
 * Initial release
