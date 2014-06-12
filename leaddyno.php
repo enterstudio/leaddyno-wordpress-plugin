@@ -43,7 +43,6 @@ if ( ! class_exists( 'LeadDyno_Admin' ) ) {
 			$this->filename = __FILE__;
 
 			add_action( 'admin_menu', array( &$this, 'register_settings_page' ) );
-			add_action( 'admin_menu', array( &$this, 'register_dashboard_page' ) );
 
 			add_filter( 'plugin_action_links', array( &$this, 'add_action_link' ), 10, 2 );
 
