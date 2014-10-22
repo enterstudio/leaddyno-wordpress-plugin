@@ -384,8 +384,8 @@ add_action( 'wp_footer', 'leaddyno_script', 90 );
 
  * @uses leaddyno_get_options()
  */
-add_action( 'woocommerce_order_status_changed', 'leaddyno_order_staus_changed' );
-function leaddyno_order_staus_changed( $order_id ) {
+add_action( 'woocommerce_order_status_changed', 'leaddyno_order_status_changed' );
+function leaddyno_order_status_changed( $order_id ) {
 
 	$options = leaddyno_get_options();
 
