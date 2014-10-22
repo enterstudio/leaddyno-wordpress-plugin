@@ -406,7 +406,7 @@ function leaddyno_order_staus_changed( $order_id ) {
                                 $code = $coupons[0];
                         }
 
-                        $total = $order->get_total() - $order->get_total_discount() - $order->get_total_shipping();
+                        $total = $order->get_total() - $order->get_total_shipping();
 
                         $req = array('key' => $options['private_key'],
                                         'email' => $order->billing_email,
