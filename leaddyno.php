@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: LeadDyno for WordPress
-Version: 1.4
+Version: 1.5
 Plugin URI: http://www.leaddyno.com/wordpress/
 Description: Integrates LeadDyno on your Wordpress site
 Author: LeadDyno
@@ -457,6 +457,8 @@ function mm_track_commission($data)
 	    return;
 	}
 
+    error_log("mm_payment_received data: " . print_r($data, true));
+
     // access coupons associated with the order
     $couponCode = "";
     $coupons = json_decode(stripslashes($data["order_coupons"]));
@@ -518,6 +520,8 @@ function mm_track_status_change($data)
 	if ( !$options['private_key'] ) {
 	    return;
 	}
+
+    error_log("mm_member_status_change data: " . print_r($data, true));
 
 	if ( $data["status"] == '2' || $data["status"] == '7' || $data["status"] == '8') {
 
