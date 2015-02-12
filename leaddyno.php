@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: LeadDyno for WordPress
+Plugin Name: LeadDyno Wordpress Plugin
 Version: 1.5
 Plugin URI: http://www.leaddyno.com/wordpress/
 Description: Integrates LeadDyno on your Wordpress site
