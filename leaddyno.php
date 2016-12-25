@@ -406,7 +406,7 @@ function leaddyno_order_status_changed( $order_id ) {
                                 $code = $coupons[0];
                         }
 
-                        $total = $order->get_total() - $order->get_total_shipping();
+                        $total = $order->get_total() - $order->get_total_shipping() - $order->get_total_tax();
 
                         $req = array('key' => $options['private_key'],
                                         'email' => $order->billing_email,
